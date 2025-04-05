@@ -68,7 +68,7 @@ const Popup: React.FC<PopupProps> = ({ isVisible, onClose, title, children }) =>
             className="flex items-center gap-3 text-lg hover:text-marrsyellow dark:hover:text-carriyellow"
           >
             <Image
-              src="https://cdn-icons-png.flaticon.com/128/174/174857.png"
+              src="https://www.svgrepo.com/show/448234/linkedin.svg"
               alt="LinkedIn"
               className="w-8 h-8"
             />
@@ -81,7 +81,7 @@ const Popup: React.FC<PopupProps> = ({ isVisible, onClose, title, children }) =>
             className="flex items-center gap-3 text-lg hover:text-marrsyellow dark:hover:text-carriyellow"
           >
             <Image
-              src="https://cdn-icons-png.flaticon.com/128/733/733585.png"
+              src="https://www.svgrepo.com/show/349563/whatsapp.svg"
               alt="WhatsApp"
               className="w-8 h-8"
             />
