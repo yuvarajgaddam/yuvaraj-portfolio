@@ -11,9 +11,9 @@ type PopupProps = {
 const Popup: React.FC<PopupProps> = ({ isVisible, onClose, title, children }) => {
   if (!isVisible) return null;
 
-  const email = "yuvaraj.gaddam@gmail.com";
+  const email = process.env.NEXT_PUBLIC_GMAIL_ID;
   const linkedinUrl = "https://www.linkedin.com/in/yuvaraj-gaddam-bba64817a/";
-  const whatsappNumber = "+916302567158";
+  const whatsappNumber = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER;
 
   const handleWhatsAppClick = () => {
     const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
