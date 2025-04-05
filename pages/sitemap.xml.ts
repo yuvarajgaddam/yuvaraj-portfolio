@@ -1,7 +1,3 @@
-import { GetServerSideProps } from "next";
-import { getAllPosts } from "utils/api";
-import slugify from "utils/slugify";
-
 export const runtime = 'experimental-edge';
 
 type Data = {
@@ -60,41 +56,5 @@ const generateSiteMap = ({ slugs, categories, tags }: Data) => {
 function SiteMap() {
   // getServerSideProps will do the heavy lifting
 }
-
-export const getServerSideProps: GetServerSideProps = async ({ res }) => {
-  // Retrieve slugs tags and category from contents folder
-  const posts = getAllPosts(["slug", "tags", "category"]);
-
-  // Generate unique categories and store it in array
-  const categories = posts
-    .map((post) => slugify(post.category as string))
-    .filter((x, i, a) => a.indexOf(x) == i);
-
-  // Generate unique tags and store it in array
-  let tags: string[] = [];
-  for (let post of posts) {
-    if (post.tags) tags.push(...(post.tags as string[]));
-  }
-  tags = tags.filter((x, i, a) => a.indexOf(x) == i);
-
-  // Generate encoded slugs and store it in array
-  const slugs = posts.map((post) =>
-    encodeURIComponent((post.slug as string).trim())
-  );
-
-  const data = { slugs, tags, categories };
-
-  // Generate the XML sitemap with the posts data
-  const sitemap = generateSiteMap(data);
-
-  res.setHeader("Content-Type", "text/xml");
-  // Send the XML to the browser
-  res.write(sitemap);
-  res.end();
-
-  return {
-    props: {},
-  };
-};
 
 export default SiteMap;
