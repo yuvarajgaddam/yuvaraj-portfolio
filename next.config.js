@@ -18,9 +18,6 @@ module.exports = {
   images: {
     domains: ["res.cloudinary.com"],
   },
-  experimental: {
-    runtime: 'edge', // Enable Edge Runtime globally if needed
-  },
   compiler: {
     removeConsole: true,
   },
