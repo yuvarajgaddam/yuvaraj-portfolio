@@ -11,13 +11,6 @@ import ContactSection from "@/sections/ContactSection";
 import Footer from "@/components/Footer";
 import SkillsSection from "@/sections/SkillSection";
 
-// import { getAllPosts } from "utils/api";
-import { MdxMeta } from "../pages/blog/posts/[slug]";
-
-type Props = {
-  blogPosts: MdxMeta[];
-};
-
 export const meta = {
   description:
     "Yuvaraj Gaddam is a full-stack developer based in Hyderabad, Telangana. He is passionate about writing codes and developing applications to solve real-life challenges.",
@@ -28,7 +21,7 @@ export const meta = {
   imageAlt: "Yuvaraj Gaddam portfolio website",
 };
 
-const Home: NextPage<Props> = ({ blogPosts }) => {
+const Home: NextPage = () => {
   return (
     <>
       <AppHead

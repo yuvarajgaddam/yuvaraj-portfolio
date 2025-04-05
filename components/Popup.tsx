@@ -1,4 +1,5 @@
 import React from "react";
+import Image from "next/image";
 
 type PopupProps = {
   isVisible: boolean;
@@ -53,7 +54,7 @@ const Popup: React.FC<PopupProps> = ({ isVisible, onClose, title, children }) =>
             onClick={handleEmailClick}
             className="flex items-center gap-3 text-lg hover:text-marrsyellow dark:hover:text-carriyellow"
           >
-            <img
+            <Image
               src="https://www.svgrepo.com/show/349378/gmail.svg"
               alt="Gmail"
               className="w-8 h-8"
@@ -66,7 +67,7 @@ const Popup: React.FC<PopupProps> = ({ isVisible, onClose, title, children }) =>
             onClick={handleLinkedInClick}
             className="flex items-center gap-3 text-lg hover:text-marrsyellow dark:hover:text-carriyellow"
           >
-            <img
+            <Image
               src="https://cdn-icons-png.flaticon.com/128/174/174857.png"
               alt="LinkedIn"
               className="w-8 h-8"
@@ -79,7 +80,7 @@ const Popup: React.FC<PopupProps> = ({ isVisible, onClose, title, children }) =>
             onClick={handleWhatsAppClick}
             className="flex items-center gap-3 text-lg hover:text-marrsyellow dark:hover:text-carriyellow"
           >
-            <img
+            <Image
               src="https://cdn-icons-png.flaticon.com/128/733/733585.png"
               alt="WhatsApp"
               className="w-8 h-8"
