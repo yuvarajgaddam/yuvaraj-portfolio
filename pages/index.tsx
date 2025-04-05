@@ -16,7 +16,7 @@ export const meta = {
     "Yuvaraj Gaddam is a full-stack developer based in Hyderabad, Telangana. He is passionate about writing codes and developing applications to solve real-life challenges.",
   author: "Yuvaraj Gaddam",
   type: "website",
-  // ogImage: `${process.env.NEXT_PUBLIC_URL}/satnaing-dev-og-new.png`,
+  ogImage: `${process.env.NEXT_PUBLIC_URL}/profilePhoto.png`,
   siteName: "Yuvaraj Gaddam",
   imageAlt: "Yuvaraj Gaddam portfolio website",
 };
@@ -26,7 +26,7 @@ const Home: NextPage = () => {
     <>
       <AppHead
         title="Yuvaraj Gaddam - A Full-stack Developer"
-        // url={`${process.env.NEXT_PUBLIC_URL}`}
+        url={`${process.env.NEXT_PUBLIC_URL}`}
         meta={meta}
       />
       <div className="bg-bglight dark:bg-bgdark overflow-hidden">

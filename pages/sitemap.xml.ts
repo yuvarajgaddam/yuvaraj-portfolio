@@ -1,60 +1,44 @@
+import { NextApiRequest, NextApiResponse } from 'next';
+
 export const runtime = 'experimental-edge';
 
-type Data = {
-  slugs: (string | string[])[];
-  tags: string[];
-  categories: (string | string[])[];
-};
-
-const generateSiteMap = ({ slugs, categories, tags }: Data) => {
-  return `<?xml version="1.0" encoding="UTF-8"?>
-   <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-      <url>
-        <loc>${process.env.NEXT_PUBLIC_URL}</loc>
-      </url>
-      <url>
-        <loc>${process.env.NEXT_PUBLIC_URL}/blog</loc>
-      </url>
-      <url>
-        <loc>${process.env.NEXT_PUBLIC_URL}/blog/categories</loc>
-      </url>
-      <url>
-        <loc>${process.env.NEXT_PUBLIC_URL}/blog/tags</loc>
-      </url>
-      ${categories
-        .map((category) => {
-          return `
-        <url>
-        <loc>${process.env.NEXT_PUBLIC_URL}/blog/categories/${category}</loc>
-        </url>
-      `;
-        })
-        .join("")}
-      ${tags
-        .map((tag) => {
-          return `
-        <url>
-        <loc>${process.env.NEXT_PUBLIC_URL}/blog/tags/${tag}</loc>
-        </url>
-      `;
-        })
-        .join("")}
-      
-      ${slugs
-        .map((slug) => {
-          return `
-        <url>
-        <loc>${process.env.NEXT_PUBLIC_URL}/blog/posts/${slug}</loc>
-        </url>
-      `;
-        })
-        .join("")}
-   </urlset>
- `;
-};
-
-function SiteMap() {
-  // getServerSideProps will do the heavy lifting
+interface SitemapUrl {
+  loc: string;
+  lastmod: string;
+  priority: number;
 }
 
-export default SiteMap;
+export default function handler(req: NextApiRequest, res: NextApiResponse): void {
+  const baseUrl: string = process.env.NEXT_PUBLIC_URL || "http://localhost:3000"; // Fallback for local development
+
+  const urls: SitemapUrl[] = [
+    {
+      loc: `${baseUrl}/`,
+      lastmod: new Date().toISOString(),
+      priority: 1.0,
+    },
+    {
+      loc: `${baseUrl}/about`,
+      lastmod: new Date().toISOString(),
+      priority: 0.8,
+    },
+  ];
+
+  res.setHeader('Content-Type', 'application/xml');
+  res.write(`
+    <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+      ${urls
+        .map(
+          (url) => `
+      <url>
+        <loc>${url.loc}</loc>
+        <lastmod>${url.lastmod}</lastmod>
+        <priority>${url.priority}</priority>
+      </url>
+      `
+        )
+        .join('')}
+    </urlset>
+  `);
+  res.end();
+}
