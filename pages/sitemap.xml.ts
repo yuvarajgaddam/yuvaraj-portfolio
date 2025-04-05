@@ -1,7 +1,8 @@
 import { GetServerSideProps } from "next";
 import { getAllPosts } from "utils/api";
 import slugify from "utils/slugify";
-export const runtime = 'edge';
+
+export const runtime = 'experimental-edge';
 
 type Data = {
   slugs: (string | string[])[];
